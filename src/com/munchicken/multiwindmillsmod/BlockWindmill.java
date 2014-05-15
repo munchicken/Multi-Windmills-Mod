@@ -11,8 +11,9 @@ public class BlockWindmill extends Block {
 	public BlockWindmill() {
 		super(Material.rock);
 		setBlockName("Windmill");
-		setBlockTextureName(Reference.MODID + ":" + getUnlocalizedName().substring(5));
+		setBlockTextureName(Reference.MODID + ":" + getUnlocalizedName().substring(5)); //substring(5) removes "tile."
 		setCreativeTab(CreativeTabs.tabMisc);
-	} // close BlockWindmill
+		
+	} // close BlockWindmill constructor
 
 } // close class

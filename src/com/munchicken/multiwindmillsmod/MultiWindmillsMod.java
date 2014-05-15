@@ -2,8 +2,7 @@ package com.munchicken.multiwindmillsmod;
 
 import net.minecraft.block.Block;
 
-import com.munchicken.multiwindmillsmod.help.Reference;
-import com.munchicken.multiwindmillsmod.help.RegisterHelper;
+import com.munchicken.multiwindmillsmod.help.*;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -14,7 +13,6 @@ public class MultiWindmillsMod {
 	
 	public static Block windmill;
      
-    
     @EventHandler
     public void preinit(FMLPreInitializationEvent event) {
     	
@@ -23,4 +21,5 @@ public class MultiWindmillsMod {
     	RegisterHelper.registerBlock(windmill);
 		
     } // close preinit
+    
 } // close class
