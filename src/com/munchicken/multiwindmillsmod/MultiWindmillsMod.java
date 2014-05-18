@@ -2,6 +2,7 @@ package com.munchicken.multiwindmillsmod;
 
 import net.minecraft.block.Block;
 
+import com.munchicken.multiwindmillsmod.blocks.BlockWindmill;
 import com.munchicken.multiwindmillsmod.help.*;
 
 import cpw.mods.fml.common.Mod;

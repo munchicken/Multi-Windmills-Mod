@@ -1,4 +1,4 @@
-package com.munchicken.multiwindmillsmod;
+package com.munchicken.multiwindmillsmod.blocks;
 
 import com.munchicken.multiwindmillsmod.help.Reference;
 
