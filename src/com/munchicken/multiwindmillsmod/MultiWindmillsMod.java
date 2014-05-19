@@ -2,7 +2,7 @@ package com.munchicken.multiwindmillsmod;
 
 import net.minecraft.block.Block;
 
-import com.munchicken.multiwindmillsmod.blocks.BlockWindmill;
+import com.munchicken.multiwindmillsmod.blocks.BasicWindmill;
 import com.munchicken.multiwindmillsmod.help.*;
 
 import cpw.mods.fml.common.Mod;
@@ -12,14 +12,14 @@ import cpw.mods.fml.common.event.*;
 @Mod(modid = Reference.MODID, version = Reference.VERSION)
 public class MultiWindmillsMod {
 	
-	public static Block windmill;
+	public static Block basicWindmill;
      
     @EventHandler
     public void preinit(FMLPreInitializationEvent event) {
     	
-    	windmill = new BlockWindmill();
+    	basicWindmill = new BasicWindmill();
     	
-    	RegisterHelper.registerBlock(windmill);
+    	RegisterHelper.registerBlock(basicWindmill);
 		
     } // close preinit
     

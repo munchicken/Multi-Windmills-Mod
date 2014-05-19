@@ -1,19 +1,15 @@
 package com.munchicken.multiwindmillsmod.blocks;
 
-import com.munchicken.multiwindmillsmod.help.Reference;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
-public class BlockWindmill extends Block {
+public abstract class BlockWindmill extends Block {
 	
 	public BlockWindmill() {
 		super(Material.rock);
-		setBlockName("Windmill");
-		setBlockTextureName(Reference.MODID + ":" + getUnlocalizedName().substring(5)); //substring(5) removes "tile."
 		setCreativeTab(CreativeTabs.tabMisc);
 		
-	} // close BlockWindmill constructor
+	} // close constructor
 
 } // close class
