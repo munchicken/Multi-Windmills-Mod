@@ -1,14 +1,15 @@
 package com.munchicken.multiwindmillsmod.blocks;
 
+import com.munchicken.multiwindmillsmod.MultiWindmillsMod;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 
 public abstract class BlockWindmill extends Block {
 	
 	public BlockWindmill() {
 		super(Material.rock);
-		setCreativeTab(CreativeTabs.tabMisc);
+		this.setCreativeTab(MultiWindmillsMod.tabWindmill);
 		
 	} // close constructor
 
