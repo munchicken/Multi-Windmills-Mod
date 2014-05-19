@@ -2,6 +2,7 @@ package com.munchicken.multiwindmillsmod;
 
 import com.munchicken.multiwindmillsmod.blocks.ModBlocks;
 import com.munchicken.multiwindmillsmod.help.Reference;
+import com.munchicken.multiwindmillsmod.items.ModItems;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -14,6 +15,7 @@ public class MultiWindmillsMod {
     public void preinit(FMLPreInitializationEvent event) {
     	
     	ModBlocks.loadBlocks();
+    	ModItems.loadItems();
 		
     } // close preinit
     
