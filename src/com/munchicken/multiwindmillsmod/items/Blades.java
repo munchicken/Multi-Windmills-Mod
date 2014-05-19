@@ -1,20 +1,10 @@
 package com.munchicken.multiwindmillsmod.items;
 
-import com.munchicken.multiwindmillsmod.MultiWindmillsMod;
-import com.munchicken.multiwindmillsmod.help.Reference;
-
-import net.minecraft.item.Item;
-
-public class Blades extends Item {
+public class Blades extends ItemWindmill {
 	
-	public Blades() {
+		public Blades() {
 		
-		super();
-		setUnlocalizedName("Blades");
-		setTextureName(Reference.MODID + ":" + getUnlocalizedName().substring(5));
-		//setCreativeTab(CreativeTabs.tabMisc);
-		System.out.println(MultiWindmillsMod.tabWindmill);
-		setCreativeTab(MultiWindmillsMod.tabWindmill);
+		super("Blades");
 		
 	} // close constructor
 
