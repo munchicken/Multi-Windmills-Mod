@@ -1,6 +1,7 @@
 package com.munchicken.multiwindmillsmod;
 
 import com.munchicken.multiwindmillsmod.blocks.ModBlocks;
+import com.munchicken.multiwindmillsmod.handlers.ModRecipes;
 import com.munchicken.multiwindmillsmod.help.Reference;
 import com.munchicken.multiwindmillsmod.items.ModItems;
 
@@ -16,7 +17,8 @@ public class MultiWindmillsMod {
     	
     	ModBlocks.loadBlocks();
     	ModItems.loadItems();
-		
+    	ModRecipes.addRecipes();
+    	
     } // close preinit
     
 } // close class
