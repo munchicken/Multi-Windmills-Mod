@@ -9,7 +9,7 @@
   "updateUrl": "http://www.munchicken.com",
   "authorList": ["Sarah Pierce"],
   "credits": "Authored by Sarah Pierce",
-  "logoFile": "logo.png",
+  "logoFile": "windmilllogo.png",
   "screenshots": [],
   "dependencies": [Forge]
 }

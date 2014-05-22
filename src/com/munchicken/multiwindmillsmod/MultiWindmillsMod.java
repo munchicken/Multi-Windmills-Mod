@@ -3,7 +3,9 @@ package com.munchicken.multiwindmillsmod;
 import com.munchicken.multiwindmillsmod.blocks.ModBlocks;
 import com.munchicken.multiwindmillsmod.handlers.ModRecipes;
 import com.munchicken.multiwindmillsmod.help.Reference;
+import com.munchicken.multiwindmillsmod.help.RegisterHelper;
 import com.munchicken.multiwindmillsmod.items.ModItems;
+import com.munchicken.multiwindmillsmod.models.ModModels;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -15,6 +17,8 @@ public class MultiWindmillsMod {
     @EventHandler
     public void preinit(FMLPreInitializationEvent event) {
     	
+    	RegisterHelper.registerTileEntities();
+    	ModModels.loadModels();
     	ModBlocks.loadBlocks();
     	ModItems.loadItems();
     	ModRecipes.addRecipes();
