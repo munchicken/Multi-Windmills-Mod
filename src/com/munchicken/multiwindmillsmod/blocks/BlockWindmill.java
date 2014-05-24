@@ -22,12 +22,12 @@ public abstract class BlockWindmill extends BlockContainer {
 		
 	} // close getRenderType
 	
-	/*public boolean renderAsNormalBlock () {
+	public boolean renderAsNormalBlock () {
 		
 		return false;
 		
 	} // close renderAsNormalBlock
-	*/
+	
 	public boolean isOpaqueCube() {
 		
 		return false;
