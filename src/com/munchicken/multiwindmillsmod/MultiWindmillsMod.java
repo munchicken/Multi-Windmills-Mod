@@ -9,12 +9,16 @@ import com.munchicken.multiwindmillsmod.models.ModModels;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Reference.MODID, version = Reference.VERSION)
 public class MultiWindmillsMod {
 	    
-    @EventHandler
+    @SidedProxy (clientSide = "com.munchicken.multiwindmillsmod.client.ClientProxy", serverSide = "com.munchicken.multiwindmillsmod.CommonProxy")
+    public static CommonProxy myProxy;
+    
+	@EventHandler
     public void preinit(FMLPreInitializationEvent event) {
     	
     	RegisterHelper.registerTileEntities();
@@ -22,6 +26,7 @@ public class MultiWindmillsMod {
     	ModBlocks.loadBlocks();
     	ModItems.loadItems();
     	ModRecipes.addRecipes();
+    	myProxy.registerRenderers();
     	
     } // close preinit
     

@@ -84,9 +84,9 @@ public class ModelWindmill extends ModelBase
     ModelRenderer Cross23;
     ModelRenderer Cross24;
     ModelRenderer Cross25;
-    ModelRenderer Tower;
-    ModelRenderer Head;
-    ModelRenderer Wheel;
+    ModelRenderer Tower;  // Will be parent to bottom-of-windmill items for more code organization
+    ModelRenderer Head;  // Will be parent to top-of-windmill items for later animation
+    ModelRenderer Wheel; // Will be parent of all blades and child of Head for later animation
   
   public ModelWindmill()
   {
@@ -394,11 +394,11 @@ public class ModelWindmill extends ModelBase
       Cross9.mirror = true;
       setRotation(Cross9, 0F, 0F, 0F);
       Cross10 = new ModelRenderer(this, 37, 37);
-      Cross10.addBox(-2F, 7F, -13F, 44, 2, 1);
+      Cross10.addBox(-2F, 7F, -12F, 44, 2, 1); // move back one from -13 to -12
       Cross10.setRotationPoint(8F, -29F, 8F);
       Cross10.setTextureSize(64, 32);
       Cross10.mirror = true;
-      setRotation(Cross10, 0F, 0.1570796F, 1.012291F);
+      setRotation(Cross10, 0F, 0.0872664626F, 1.012291F); // rotated from 9deg to 5deg
       Cross11 = new ModelRenderer(this, 67, 0);
       Cross11.addBox(-24F, -11F, -9F, 29, 2, 1);
       Cross11.setRotationPoint(8F, -29F, 8F);
@@ -406,11 +406,11 @@ public class ModelWindmill extends ModelBase
       Cross11.mirror = true;
       setRotation(Cross11, 0F, 0.1570796F, 1.012291F);
       Cross12 = new ModelRenderer(this, 37, 37);
-      Cross12.addBox(-2F, 6F, 12F, 44, 2, 1);
+      Cross12.addBox(-2F, 6F, 11F, 44, 2, 1); // moved back one from 12 to 11
       Cross12.setRotationPoint(8F, -29F, 8F);
       Cross12.setTextureSize(64, 32);
       Cross12.mirror = true;
-      setRotation(Cross12, 0F, -0.1570796F, 1.012291F);
+      setRotation(Cross12, 0F, -0.0872664626F, 1.012291F); // rotated from -9deg to -5deg
       Cross13 = new ModelRenderer(this, 67, 0);
       Cross13.addBox(-25F, -10F, 8F, 29, 2, 1);
       Cross13.setRotationPoint(8F, -29F, 8F);
@@ -418,11 +418,11 @@ public class ModelWindmill extends ModelBase
       Cross13.mirror = true;
       setRotation(Cross13, 0F, -0.1570796F, 1.012291F);
       Cross14 = new ModelRenderer(this, 37, 37);
-      Cross14.addBox(-42F, 7F, -13F, 44, 2, 1);
+      Cross14.addBox(-42F, 7F, -12F, 44, 2, 1); // move back one from -13 to -14
       Cross14.setRotationPoint(8F, -29F, 8F);
       Cross14.setTextureSize(64, 32);
       Cross14.mirror = true;
-      setRotation(Cross14, 0F, -0.1570796F, -1.012291F);
+      setRotation(Cross14, 0F, -0.0872664626F, -1.012291F); // rotated from -9deg to -5deg
       Cross15 = new ModelRenderer(this, 67, 0);
       Cross15.addBox(-4F, -10F, -9F, 29, 2, 1);
       Cross15.setRotationPoint(8F, -29F, 8F);
@@ -436,11 +436,11 @@ public class ModelWindmill extends ModelBase
       Cross16.mirror = true;
       setRotation(Cross16, 0F, 0.1570796F, -1.012291F);
       Cross17 = new ModelRenderer(this, 37, 37);
-      Cross17.addBox(-42F, 7F, 12F, 44, 2, 1);
+      Cross17.addBox(-42F, 7F, 11F, 44, 2, 1); // move back one from 12 to 11
       Cross17.setRotationPoint(8F, -29F, 8F);
       Cross17.setTextureSize(64, 32);
       Cross17.mirror = true;
-      setRotation(Cross17, 0F, 0.1570796F, -1.012291F);
+      setRotation(Cross17, 0F, 0.0872664626F, -1.012291F); // rotated from 9deg to 5deg
       Cross18 = new ModelRenderer(this, 37, 37);
       Cross18.addBox(12F, 8F, -42F, 1, 2, 44);
       Cross18.setRotationPoint(8F, -29F, 8F);

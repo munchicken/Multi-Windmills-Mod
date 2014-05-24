@@ -13,6 +13,8 @@ public abstract class BlockWindmill extends BlockContainer {
 		setBlockName(name);
 		setBlockTextureName(Reference.MODID + ":" + getUnlocalizedName().substring(5)); //substring(5) removes "tile."
 		setCreativeTab(ModCreativeTabs.tabWindmill);
+		setHardness(35F);
+		setResistance(17.5F);
 		
 	} // close constructor
 	

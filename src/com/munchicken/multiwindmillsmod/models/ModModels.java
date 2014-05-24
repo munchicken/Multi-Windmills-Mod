@@ -9,7 +9,7 @@ public class ModModels {
 	
 	public static void loadModels () {
 		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, new WindmillRenderer());
+		// ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, new WindmillRenderer());
 				
 	} // close constructor
 
