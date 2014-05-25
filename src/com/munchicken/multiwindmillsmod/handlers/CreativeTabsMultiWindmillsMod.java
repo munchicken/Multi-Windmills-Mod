@@ -1,9 +1,9 @@
 package com.munchicken.multiwindmillsmod.handlers;
 
-import com.munchicken.multiwindmillsmod.items.ModItems;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+
+import com.munchicken.multiwindmillsmod.blocks.ModBlocks;
 
 public class CreativeTabsMultiWindmillsMod extends CreativeTabs {
 	
@@ -16,7 +16,8 @@ public class CreativeTabsMultiWindmillsMod extends CreativeTabs {
 	@Override
 	public Item getTabIconItem() {
 		
-		return ModItems.blades;
+		return Item.getItemFromBlock(ModBlocks.basicWindmill);
 	}
+
 
 } // close class
