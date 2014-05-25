@@ -5,8 +5,6 @@ import com.munchicken.multiwindmillsmod.handlers.ModRecipes;
 import com.munchicken.multiwindmillsmod.help.Reference;
 import com.munchicken.multiwindmillsmod.help.RegisterHelper;
 import com.munchicken.multiwindmillsmod.items.ModItems;
-import com.munchicken.multiwindmillsmod.models.ModModels;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
@@ -22,7 +20,6 @@ public class MultiWindmillsMod {
     public void preinit(FMLPreInitializationEvent event) {
     	
     	RegisterHelper.registerTileEntities();
-    	ModModels.loadModels();
     	ModBlocks.loadBlocks();
     	ModItems.loadItems();
     	ModRecipes.addRecipes();

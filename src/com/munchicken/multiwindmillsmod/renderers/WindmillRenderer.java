@@ -1,4 +1,4 @@
-package com.munchicken.multiwindmillsmod.handlers;
+package com.munchicken.multiwindmillsmod.renderers;
 
 import org.lwjgl.opengl.GL11;
 

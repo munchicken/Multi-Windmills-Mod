@@ -15,6 +15,7 @@ public class BasicWindmill extends BlockWindmill{
 		
 		super("BasicWindmill");
 		setBlockBounds(0F, 0F, 0F, 2F, 7F, 2F);
+		//setBlockTextureName(Reference.MODID + ":" + getUnlocalizedName().substring(5)); //substring(5) removes "tile."
 		
 	} // close constructor
 
