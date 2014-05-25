@@ -22,7 +22,7 @@ public class RegisterHelper {
 	
 	public static void registerTileEntities() {
 		
-		GameRegistry.registerTileEntity(TileEntityWindmill.class, "Windmill");
+		GameRegistry.registerTileEntity(TileEntityWindmill.class, "WindmillEntity");
 		
 	} // close registerTileEntities
 

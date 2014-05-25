@@ -14,6 +14,7 @@ public class BasicWindmill extends BlockWindmill{
 	public BasicWindmill() {
 		
 		super("BasicWindmill");
+		setBlockBounds(0F, 0F, 0F, 2F, 7F, 2F);
 		
 	} // close constructor
 
