@@ -1,4 +1,4 @@
-package com.munchicken.multiwindmillsmod.handlers;
+package com.munchicken.multiwindmillsmod.creativetabs;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

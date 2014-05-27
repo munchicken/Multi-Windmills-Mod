@@ -1,6 +1,6 @@
 package com.munchicken.multiwindmillsmod.items;
 
-import com.munchicken.multiwindmillsmod.handlers.ModCreativeTabs;
+import com.munchicken.multiwindmillsmod.creativetabs.ModCreativeTabs;
 import com.munchicken.multiwindmillsmod.help.Reference;
 
 import net.minecraft.item.Item;

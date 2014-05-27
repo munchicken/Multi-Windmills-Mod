@@ -1,6 +1,7 @@
 package com.munchicken.multiwindmillsmod.blocks;
 
-import com.munchicken.multiwindmillsmod.handlers.ModCreativeTabs;
+import com.munchicken.multiwindmillsmod.creativetabs.ModCreativeTabs;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 

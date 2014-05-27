@@ -1,10 +1,9 @@
 package com.munchicken.multiwindmillsmod.help;
 
-import com.munchicken.multiwindmillsmod.tileentities.TileEntityWindmill;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegisterHelper {
 	
@@ -20,10 +19,10 @@ public class RegisterHelper {
 		
 	} // close registerItem
 	
-	public static void registerTileEntities() {
+	/*public static void registerChannel() {
 		
-		GameRegistry.registerTileEntity(TileEntityWindmill.class, "WindmillEntity");
+		EnumMap<Side, FMLEmbeddedChannel> channels = NetworkRegistry.INSTANCE.newChannel("channel", new ChannelHandler());
 		
-	} // close registerTileEntities
+	} // close registerChannel */
 
 } // close class
