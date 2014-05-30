@@ -9,6 +9,7 @@ import com.munchicken.multiwindmillsmod.items.ModItems;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
+// Crafting Recipes (Smelting Recipes are in ModSmeltingRecipes)
 public class ModRecipes {
 
 	public static void addRecipes() {

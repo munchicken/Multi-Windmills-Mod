@@ -1,8 +1,11 @@
 package com.munchicken.multiwindmillsmod.help;
 
+import com.munchicken.multiwindmillsmod.MultiWindmillsMod;
+import com.munchicken.multiwindmillsmod.handlers.WindmillGuiHandler;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegisterHelper {
@@ -18,6 +21,12 @@ public class RegisterHelper {
 		GameRegistry.registerItem(item, Reference.MODID + "_" + item.getUnlocalizedName().substring(5));
 		
 	} // close registerItem
+	
+	public static void registerGui() {
+		
+		NetworkRegistry.INSTANCE.registerGuiHandler(MultiWindmillsMod.instance, new WindmillGuiHandler());
+		
+	} // close registerGui
 	
 	/*public static void registerChannel() {
 		
