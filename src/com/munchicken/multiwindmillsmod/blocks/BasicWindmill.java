@@ -44,7 +44,7 @@ public class BasicWindmill extends BlockWindmill {
 	public void registerBlockIcons(IIconRegister iconRegister) {
 		
 		// Icons for use in inventory
-		blockIcon = iconRegister.registerIcon(Reference.MODID + ":" + getUnlocalizedName().substring(5));
+		blockIcon = iconRegister.registerIcon(Reference.MODID + ":" + getUnlocalizedName().substring(5).toLowerCase());
 		
 	} // close registerBlockIcons
 
