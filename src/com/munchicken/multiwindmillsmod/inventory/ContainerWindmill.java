@@ -17,16 +17,18 @@ public class ContainerWindmill  extends Container {
 	
 	private TileEntityWindmill tileWindmill;
 	private int lastPumpTime;
+	public static final int INPUT = 0, OUTPUT = 1;
+	
 	
 	public ContainerWindmill(InventoryPlayer invPlayer, TileEntityWindmill tileEntityWindmill) {
 		
 		this.tileWindmill = tileEntityWindmill;
-		// Windmill has 2 slots, 0 = input slot, 1 = output slot
-		this.addSlotToContainer(new Slot(tileEntityWindmill, 0, 56, 53));
-		this.addSlotToContainer(new SlotFurnace(invPlayer.player, tileEntityWindmill, 1, 116, 35)); // using furnace smelting methods for "pumping"
+		// Windmill has 2 slots
+		this.addSlotToContainer(new Slot(tileEntityWindmill, INPUT, 56, 53));
+		this.addSlotToContainer(new SlotFurnace(invPlayer.player, tileEntityWindmill, OUTPUT, 116, 35)); // using furnace smelting methods for "pumping"
 		int i;
 		
-		// player inventory slots, 3 rows x 9 columns
+		// player inventory slots, 3 rows x 9 columns = 27 slots, OUTPUT + 1 to OUTPUT + 27
 		for(i = 0; i < 3; ++i) {
 			
 			for(int j = 0; j < 9; ++j) {
@@ -37,7 +39,7 @@ public class ContainerWindmill  extends Container {
 			
 			} // close for
 		
-		// player hotbar, 9 slots
+		// player hotbar, 9 slots, OUTPUT + 27 + 1 to OUTPUT + 27 + 1 + 9
 		for(i = 0; i < 9; ++i) {
 			
 			this.addSlotToContainer(new Slot(invPlayer, i , 8 + i * 18 , 142));
@@ -83,9 +85,9 @@ public class ContainerWindmill  extends Container {
 	// Called when a player shift-clicks on a slot.
 	public ItemStack transferStackInSlot(EntityPlayer player, int shiftClickedSlotNumber) {
 		
-		// causing crash from windmill slots, others ok, will work on later
-		return null;
-		/* ItemStack itemstack = null;
+		/*// causing crash from windmill slots, others ok, will work on later
+		return null;*/
+		ItemStack itemstack = null;
 		Slot slot = (Slot) this.inventorySlots.get(shiftClickedSlotNumber);
 		
 		if(slot != null && slot.getHasStack()) {
@@ -93,11 +95,10 @@ public class ContainerWindmill  extends Container {
 			ItemStack itemstack1 = slot.getStack(); // test stack
 			itemstack = itemstack1.copy();
 			
-			if(shiftClickedSlotNumber == 1) {
-				// if shift clicked output slot
+			if(shiftClickedSlotNumber == OUTPUT) {
 				
-				// tries merging test stack in slots 2-38 (windmill slots are 0 & 1, 2-38 are player slots)
-				if(!this.mergeItemStack(itemstack1, 2, 38, true)) {
+				// tries merging test stack in slots 2-38 (windmill slots are 0 & 1, 2-37 are player slots), the +1 is for mergeItemStack's <
+				if(!this.mergeItemStack(itemstack1, OUTPUT + 1, OUTPUT + 36 + 1, true)) {
 					
 					return null;
 					
@@ -105,66 +106,66 @@ public class ContainerWindmill  extends Container {
 				
 				slot.onSlotChange(itemstack1, itemstack);  // completes merge if successful
 				
-			} else if(shiftClickedSlotNumber != 0) {
+			} else if(shiftClickedSlotNumber != INPUT) {
 				// if shift clicked player inventory slot (not input or output slot (from previous if))
 					
 				if(ModSmeltingRecipes.smelting().getSmeltingResult(itemstack1) != null){
 					// can item be crafted
 						
-					if(!this.mergeItemStack(itemstack1, 0, 1, false)){
-						//tries merging test stack in slot 0
+					if(!this.mergeItemStack(itemstack1, INPUT, INPUT + 1, false)){
+						//tries merging test stack in slot 0, the +1 is for mergeItemStack's <
 							
 						return null;
 							
 					} // close if
 						
-				} else if(shiftClickedSlotNumber >=2 && shiftClickedSlotNumber < 29) {
+				} else if(shiftClickedSlotNumber >= OUTPUT + 1 && shiftClickedSlotNumber < OUTPUT + 28) {
 					// is slot in player inventory, not hotbar
 								
-					if(!this.mergeItemStack(itemstack1, 30, 38, false)) {
+					if(!this.mergeItemStack(itemstack1, OUTPUT + 28, OUTPUT + 37, false)) {
 						// try merging test stack in slots on hotbar
 									
 						return null;
 									
 					} // close if
 								
-				} else if(shiftClickedSlotNumber >= 29 && shiftClickedSlotNumber < 38 && !this.mergeItemStack(itemstack1, 2, 29, false)) {
+				} else if(shiftClickedSlotNumber >= OUTPUT + 28 && shiftClickedSlotNumber < OUTPUT + 37 && !this.mergeItemStack(itemstack1, OUTPUT + 1, OUTPUT + 28, false)) {
 					// if slot is in hotbar & try merging in player inventory slots
 					
 					return null;
 					
-				} else if(!this.mergeItemStack(itemstack1, 2, 38, false)) {
-					// if input slot is shift clicked
-					
-						return null;
-						
-				} // close else
+				}
 				
-				if(itemstack1.stackSize == 0) {
-					// shift-clicked stack is completely moved
-					
-					slot.putStack((ItemStack)null);
-					
-				} else {
-					// shift-clicked stack not completely moved
-					
-					slot.onSlotChanged();
-					
-				} // close else
+			} else if(!this.mergeItemStack(itemstack1, OUTPUT + 1, OUTPUT + 37, false)) {
+				// if input slot is shift clicked
 				
-				if(itemstack1.stackSize == itemstack.stackSize) {
-					
 					return null;
 					
-				} // close if
-				
-				slot.onPickupFromSlot(player, itemstack1);
-			
 			} // close else
+				
+			if(itemstack1.stackSize == 0) {
+				// shift-clicked stack is completely moved
+				
+				slot.putStack((ItemStack)null);
+				
+			} else {
+				// shift-clicked stack not completely moved
+				
+				slot.onSlotChanged();
+				
+			} // close else
+				
+			if(itemstack1.stackSize == itemstack.stackSize) {
+				
+				return null;
+				
+			} // close if
+				
+			slot.onPickupFromSlot(player, itemstack1);
 			
-		} // close if
+		} // close else
 			
-		return itemstack; */
+		return itemstack;
 		
 	} // close transferStackInSlot
 

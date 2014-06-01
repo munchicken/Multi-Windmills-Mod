@@ -32,7 +32,7 @@ public class BasicWindmill extends BlockWindmill {
 		setBlockBounds(0F, 0F, 0F, 2F, 7F, 2F);
 		
 	} // close constructor
-
+	
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		
@@ -116,17 +116,14 @@ public class BasicWindmill extends BlockWindmill {
 	public void randomDisplayTick(World world, int x, int y, int z, Random random) {
 		TileEntityWindmill tileEntity = (TileEntityWindmill) world.getTileEntity(x, y, z);
 		 
-		// probably want to move this around later
 		if(tileEntity.isPumping()) {
 		
-			 float x1 = (float)x + 0.5F;
+
 			 float y1 = (float)y + random.nextFloat();
-			 float z1 = (float)z + 0.5F;
-			 
-			 float f = 0.52F;
-			 float f1 = random.nextFloat() * 0.6F - 0.3F;
+
+			 float f1 = random.nextFloat() * 1F - 0.3F;
 			 			 
-			 world.spawnParticle("splash", (double)(x1-f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+			 world.spawnParticle("splash", (x + 1 + f1), (double)y1, (double)(z + 1 + f1), 0.0D, 0.0D, 0.0D);
 		 }
 	}
 	

@@ -30,6 +30,8 @@ public class WindmillRenderer extends TileEntitySpecialRenderer {
 		this.bindTexture(texture);
 		GL11.glPushMatrix();
 		windmill.renderModel(0.0625F);
+		windmill.setHeadRotation(var1.getWorldObj().getWorldTime()); // wind changes direction randomly
+		windmill.setWheelRotation(var1.getWorldObj().getWorldTime()); // wheel constantly turns
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 		
