@@ -118,12 +118,9 @@ public class BasicWindmill extends BlockWindmill {
 		 
 		if(tileEntity.isPumping()) {
 		
-
-			 float y1 = (float)y + random.nextFloat();
-
-			 float f1 = random.nextFloat() * 1F - 0.3F;
+			 float r = random.nextFloat();
 			 			 
-			 world.spawnParticle("splash", (x + 1 + f1), (double)y1, (double)(z + 1 + f1), 0.0D, 0.0D, 0.0D);
+			 world.spawnParticle("splash", (double)(x + r), (double)(y + 0.75), (double)(z + r), 0.0D, 0.0D, 0.0D);
 		 }
 	}
 	

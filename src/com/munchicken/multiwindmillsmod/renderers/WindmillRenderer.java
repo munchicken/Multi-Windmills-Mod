@@ -4,8 +4,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.munchicken.multiwindmillsmod.help.Reference;
 import com.munchicken.multiwindmillsmod.models.ModelWindmill;
-import com.munchicken.multiwindmillsmod.tileentities.TileEntityWindmill;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -43,12 +41,4 @@ public class WindmillRenderer extends TileEntitySpecialRenderer {
 		
 	} // close renderTileEntityAt
 	
-/*	protected void preRenderScale(TileEntityWindmill entity, float par2) {
-		GL11.glScalef(0.5F, 0.5F, 0.5F);
-	}
-	
-	protected void preRenderCallback(TileEntity entity, float par2) {
-		preRenderScale((TileEntityWindmill)entity, par2);
-	}*/
-
 } // close class

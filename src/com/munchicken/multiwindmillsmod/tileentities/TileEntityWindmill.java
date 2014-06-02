@@ -85,8 +85,8 @@ public class TileEntityWindmill extends TileEntity implements IInventory {
 	} // close hasCustomInventoryName
 
 	@Override
-	public int getInventoryStackLimit() {		
-		return 1; // Empty buckets stack, but water buckets don't, so leaving at 1		
+	public int getInventoryStackLimit() {	
+		return 64;	
 	} // close getInventoryStackLimit
 
 	@Override
@@ -176,17 +176,13 @@ public class TileEntityWindmill extends TileEntity implements IInventory {
 	
 	public void updateEntity() {
 		boolean flag = false;  // true when inventory changed
-		if (/*(!this.worldObj.isRemote) && */(canPump()) /*&& (isPumping())*/) {
-		System.out.println("DEBUG:  In updateEntity");	
+		if (canPump()) {
 		this.pumpTime++;
-		System.out.println(this.pumpTime);
 			if (this.pumpTime == this.pumpSpeed) {
 				this.pumpTime = 0;
 				this.smeltItem();
 				flag = true;
-			}// else {
-				//this.pumpTime = 0;
-			//} // close else
+			}
 		} // close if
 		
 		if (flag) {
@@ -196,7 +192,6 @@ public class TileEntityWindmill extends TileEntity implements IInventory {
 
 	private void smeltItem() {
 		if(this.canPump()) {
-			System.out.println("DEBUG:  In smeltItem");
 			ItemStack result = ModSmeltingRecipes.smelting().getSmeltingResult(this.windmillInventory[0]);
 			this.windmillInventory[1] = result.copy();
 			this.windmillInventory[0].stackSize--;
