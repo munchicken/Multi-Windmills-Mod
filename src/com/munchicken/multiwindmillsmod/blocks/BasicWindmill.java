@@ -28,8 +28,8 @@ public class BasicWindmill extends BlockWindmill {
 	public BasicWindmill() {
 		
 		super("BasicWindmill");
-		// set approximately 20ft tall (6 blocks) x 2 blocks wide
-		setBlockBounds(0F, 0F, 0F, 2F, 7F, 2F);
+		// set approximately 20ft tall (6 blocks) x 2 blocks wide, but later scaled down to 1x3x1
+		setBlockBounds(0F, 0F, 0F, 1F, 3F, 1F);
 		
 	} // close constructor
 	
