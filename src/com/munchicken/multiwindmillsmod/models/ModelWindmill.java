@@ -83,8 +83,8 @@ public class ModelWindmill extends ModelBase
     ModelRenderer Cross24;
     ModelRenderer Cross25;
     ModelRenderer Tower;  // Not currently being used, is designed as a parent to all tower pieces: Legs, cross-members, platform, & spindle
-    ModelRenderer Head;  // Will be parent to top-of-windmill (Vane, Axle, & Wheel) items for later animation
-    ModelRenderer Wheel; // Will be parent of all blades and child of Head for later animation
+    ModelRenderer Head;  // Parent to top-of-windmill (Vane, Axle, & Wheel) items
+    ModelRenderer Wheel; // Parent of all blades and child of Head
   
   public ModelWindmill()
   {
@@ -542,6 +542,7 @@ public class ModelWindmill extends ModelBase
     
   }
   
+   /** Sets the models various rotation angles then renders the model. */
   public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
   {
     super.render(entity, f, f1, f2, f3, f4, f5);
@@ -578,9 +579,12 @@ public class ModelWindmill extends ModelBase
     Cross25.render(f5);
     Tower.render(f5);
     Head.render(f5);
-    // Wheel.render(f5);
   }
   
+  /** Renders the model
+   * 
+   * @param f5
+   */
   public void renderModel(float f5) {
 	    Platform.render(f5);
 	    Leg1.render(f5);
@@ -614,9 +618,15 @@ public class ModelWindmill extends ModelBase
 	    Cross25.render(f5);
 	    Tower.render(f5);
 	    Head.render(f5);
-	    // Wheel.render(f5);
   }
   
+  /** Sets x, y, z rotation angles
+   * 
+   * @param model
+   * @param x
+   * @param y
+   * @param z
+   */
   private void setRotation(ModelRenderer model, float x, float y, float z)
   {
     model.rotateAngleX = x;
@@ -624,12 +634,21 @@ public class ModelWindmill extends ModelBase
     model.rotateAngleZ = z;
   }
   
+/**
+ * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
+ * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
+ * "far" arms and legs can swing at most.
+ */
   public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
   {
     super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     
   }
-  // There's a half chance the wind will change to a random direction every tick
+  /** Animates the "head" portion of the windmill by moving to 1 of 8 directions.
+   *  There's a half chance the wind will change to a random direction every tick.
+   *  
+   * @param tick
+   */
   public void setHeadRotation(long tick) {
 	  Random random = new Random();
 	  
@@ -669,7 +688,10 @@ public class ModelWindmill extends ModelBase
 	  
   }
   
-  // Wheel rotates constantly (angle = world ticks)
+  /** Wheel rotates constantly (angle = world ticks)
+   * 
+   * @param angle
+   */
   public void setWheelRotation(long angle) {
 	  Wheel.rotateAngleZ = (float) angle;
   }

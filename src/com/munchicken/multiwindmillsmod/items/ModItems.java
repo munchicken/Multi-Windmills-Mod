@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import com.munchicken.multiwindmillsmod.help.RegisterHelper;
 
 public class ModItems {
+	// Sets up all items for this mod.
 	
 	public static Item blades;
 	public static Item pump;
@@ -21,6 +22,6 @@ public class ModItems {
     	tower = new Tower();
     	RegisterHelper.registerItem(tower);
 		
-	} // close loadItems
+	}
 
-} // close class
+}

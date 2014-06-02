@@ -11,13 +11,13 @@ public class CreativeTabsMultiWindmillsMod extends CreativeTabs {
 		
 		super(tabLabel);
 		
-	} // close constructor
+	}
 
+	/** Retreives the icon for the creative tab from the block. */
 	@Override
 	public Item getTabIconItem() {
 		
 		return Item.getItemFromBlock(ModBlocks.basicWindmill);
 	}
 
-
-} // close class
+}

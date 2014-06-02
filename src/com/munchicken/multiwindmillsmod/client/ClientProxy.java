@@ -14,6 +14,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 
 public class ClientProxy extends CommonProxy {
 	
+	/** Registers all renderers. */
 	@Override
 	public void registerRenderers() {
 		
@@ -21,6 +22,6 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, renderer);
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.basicWindmill), new ItemWindmillRenderer(renderer, new TileEntityWindmill()));
 		
-	} // close registerRenderers
+	}
 
-} // close class
+}

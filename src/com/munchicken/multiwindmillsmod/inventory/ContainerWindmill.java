@@ -35,25 +35,27 @@ public class ContainerWindmill  extends Container {
 				
 				this.addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 				
-				} // close for
+				}
 			
-			} // close for
+			}
 		
 		// player hotbar, 9 slots, OUTPUT + 27 + 1 to OUTPUT + 27 + 1 + 9
 		for(i = 0; i < 9; ++i) {
 			
 			this.addSlotToContainer(new Slot(invPlayer, i , 8 + i * 18 , 142));
 			
-			} // close for
+			}
 		
-	} // close constructor
+	}
 	
+	/** Notifies listeners (I believe..) */
 	public void addCraftingToCrafters(ICrafting craft) {
 		super.addCraftingToCrafters(craft);
 		craft.sendProgressBarUpdate(this, 0, this.tileWindmill.pumpTime);
 		craft.sendProgressBarUpdate(this, 1, this.tileWindmill.pumpTime);
-	} // close addCraftingToCrafters
+	}
 	
+    /** Looks for changes made in the container, sends them to every listener. */
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		for(int i = 0; i < this.crafters.size(); ++i) {
@@ -62,31 +64,31 @@ public class ContainerWindmill  extends Container {
 			if(this.lastPumpTime != this.tileWindmill.pumpTime) {
 				craft.sendProgressBarUpdate(this, 0, this.tileWindmill.pumpTime);
 				craft.sendProgressBarUpdate(this, 1, this.tileWindmill.pumpTime); // trying to animate the "burn time" area too 
-			} // close if
-		} // close for
+			}
+		}
 		
 		this.lastPumpTime = this.tileWindmill.pumpTime;
 		
-	} // close detectAndSendChanges
+	}
 	
+	/** Updates the new value for pumping progress */
 	@SideOnly(Side.CLIENT)
 	public void updateProgressBar(int slot, int newValue) {
 		if(slot == 0) {
 			this.tileWindmill.pumpTime = newValue;
-		} // close if
-	} // close updateProgressBar
+		}
+	}
 
+	/** Returns whether entity can be used by player */
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		
 		return this.tileWindmill.isUseableByPlayer(player);
-	} // close canInteractWith
+	}
 	
-	// Called when a player shift-clicks on a slot.
+    /** Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that. */
 	public ItemStack transferStackInSlot(EntityPlayer player, int shiftClickedSlotNumber) {
 		
-		/*// causing crash from windmill slots, others ok, will work on later
-		return null;*/
 		ItemStack itemstack = null;
 		Slot slot = (Slot) this.inventorySlots.get(shiftClickedSlotNumber);
 		
@@ -102,7 +104,7 @@ public class ContainerWindmill  extends Container {
 					
 					return null;
 					
-				} // close if
+				}
 				
 				slot.onSlotChange(itemstack1, itemstack);  // completes merge if successful
 				
@@ -117,7 +119,7 @@ public class ContainerWindmill  extends Container {
 							
 						return null;
 							
-					} // close if
+					}
 						
 				} else if(shiftClickedSlotNumber >= OUTPUT + 1 && shiftClickedSlotNumber < OUTPUT + 28) {
 					// is slot in player inventory, not hotbar
@@ -127,7 +129,7 @@ public class ContainerWindmill  extends Container {
 									
 						return null;
 									
-					} // close if
+					}
 								
 				} else if(shiftClickedSlotNumber >= OUTPUT + 28 && shiftClickedSlotNumber < OUTPUT + 37 && !this.mergeItemStack(itemstack1, OUTPUT + 1, OUTPUT + 28, false)) {
 					// if slot is in hotbar & try merging in player inventory slots
@@ -141,7 +143,7 @@ public class ContainerWindmill  extends Container {
 				
 					return null;
 					
-			} // close else
+			}
 				
 			if(itemstack1.stackSize == 0) {
 				// shift-clicked stack is completely moved
@@ -153,20 +155,20 @@ public class ContainerWindmill  extends Container {
 				
 				slot.onSlotChanged();
 				
-			} // close else
+			}
 				
 			if(itemstack1.stackSize == itemstack.stackSize) {
 				
 				return null;
 				
-			} // close if
+			}
 				
 			slot.onPickupFromSlot(player, itemstack1);
 			
-		} // close else
+		}
 			
 		return itemstack;
 		
-	} // close transferStackInSlot
+	}
 
-} // close class
+}

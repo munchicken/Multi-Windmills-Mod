@@ -18,7 +18,7 @@ public class WindmillRenderer extends TileEntitySpecialRenderer {
 		
 		windmill = new ModelWindmill();
 		
-	} // close constructor
+	}
 
 	@Override
 	public void renderTileEntityAt(TileEntity var1, double x, double y, double z, float var8) {
@@ -39,6 +39,6 @@ public class WindmillRenderer extends TileEntitySpecialRenderer {
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 		
-	} // close renderTileEntityAt
+	}
 	
-} // close class
+}

@@ -28,16 +28,18 @@ public class GuiWindmill extends GuiContainer {
 		this.xSize = 176;
 		this.ySize = 166;
 		
-	} // close constructor
+	}
 	
+    /** Draw the foreground layer for the GuiContainer (everything in front of the items) */
 	public void drawGuiContainerForegroundLayer(int par1, int par2) {
 		
 		String string = this.tileWindmill.hasCustomInventoryName() ? this.tileWindmill.getInventoryName() : I18n.format(this.tileWindmill.getInventoryName(), new Object[0]);
 		this.fontRendererObj.drawString(string, this.xSize / 2 - this.fontRendererObj.getStringWidth(string) / 2, 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
 				
-	} // close drawGuiContainerForegroundLayer
+	}
 	
+    /** Draw the background layer for the GuiContainer */
 	@Override
 	public void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		
@@ -52,6 +54,6 @@ public class GuiWindmill extends GuiContainer {
 		k = this.tileWindmill.getPumpProgressScaled(24);
 		this.drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 14, k + 1, 16);
 		
-	} // close drawGuiContainerBackgroundLayer
+	}
 
-} // close class
+}

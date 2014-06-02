@@ -31,8 +31,9 @@ public class BasicWindmill extends BlockWindmill {
 		// set approximately 20ft tall (6 blocks) x 2 blocks wide, but later scaled down to 1x3x1
 		setBlockBounds(0F, 0F, 0F, 1F, 3F, 1F);
 		
-	} // close constructor
+	}
 	
+    /** Returns a new instance of a block's tile entity class. Called on placing the block. */
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		
@@ -40,36 +41,33 @@ public class BasicWindmill extends BlockWindmill {
 		
 	} // close createNewTileEntity
 	
+	/** Registers block icons with icon register */
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
 		
 		// Icons for use in inventory
 		blockIcon = iconRegister.registerIcon(Reference.MODID + ":" + getUnlocalizedName().substring(5).toLowerCase());
 		
-	} // close registerBlockIcons
+	}
 
+    /** Called upon block activation (right click on the block.) */
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
 		
-		// not sure if this is needed, so commented out for now
-		//if(!world.isRemote) {
-			
-			player.openGui(MultiWindmillsMod.instance, ModGuis.guiIdBasicWindmill, world, x, y, z);
-			
-		//} // end if
-		
+		player.openGui(MultiWindmillsMod.instance, ModGuis.guiIdBasicWindmill, world, x, y, z);
 		return true;
 		
-	} // close onBlockActivated
+	}
 	
-    //Called when the block is placed in the world.
+    /** Called when the block is placed in the world. */
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemstack) {
 		if (itemstack.hasDisplayName()) {
 			((TileEntityWindmill)world.getTileEntity(x, y, z)).setGuiDisplayName(itemstack.getDisplayName());
-		} // close if
-	} // close OnBlockPlacedBy
+		}
+	}
 	
-	// dumps items that are in slots onto the ground when windmills is broken
+	/** Called when block is broken */
 	public void breakBlock(World world, int x, int y, int z, Block oldBlock, int oldMeta) {
+		// dumps items that are in slots onto the ground when windmills is broken
 		TileEntityWindmill tileEntity = (TileEntityWindmill) world.getTileEntity(x, y, z);
 		
 		if(tileEntity != null) {
@@ -106,22 +104,22 @@ public class BasicWindmill extends BlockWindmill {
 					}
 				}
 			}
-			world.func_147453_f(x, y, z, oldBlock);;
+			world.func_147453_f(x, y, z, oldBlock);
 		}
 		
 		super.breakBlock(world, x, y, z, oldBlock, oldMeta);
-	} // close breakBlock
+	}
 	
-	// displays water splashing around windmill while pumping
+    /** A randomly called display update to be able to add particles or other items for display */
 	public void randomDisplayTick(World world, int x, int y, int z, Random random) {
 		TileEntityWindmill tileEntity = (TileEntityWindmill) world.getTileEntity(x, y, z);
 		 
 		if(tileEntity.isPumping()) {
 		
 			 float r = random.nextFloat();
-			 			 
+			// displays water splashing around windmill while pumping			 
 			 world.spawnParticle("splash", (double)(x + r), (double)(y + 0.75), (double)(z + r), 0.0D, 0.0D, 0.0D);
 		 }
 	}
 	
-} // close class
+}

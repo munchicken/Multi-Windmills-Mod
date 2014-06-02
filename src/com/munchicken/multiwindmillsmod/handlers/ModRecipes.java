@@ -12,6 +12,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 // Crafting Recipes (Smelting Recipes are in ModSmeltingRecipes)
 public class ModRecipes {
 
+	/** Registers all recipes for this mod with the game registry */
 	public static void addRecipes() {
 		
     	GameRegistry.addRecipe(new ItemStack(ModItems.blades), new Object[] {
@@ -20,14 +21,14 @@ public class ModRecipes {
     		"X X",
     		'X', Items.iron_ingot, 'Y', Blocks.iron_block
     		
-    	} /* close array */);
+    	});
     	
     	GameRegistry.addRecipe(new ItemStack(ModItems.pump), new Object[] {
     		" X ",
     		" Y ",
     		'X', Blocks.sticky_piston, 'Y', Items.bucket
     		
-    	} /* close array */);
+    	});
     	
     	GameRegistry.addRecipe(new ItemStack(ModItems.tower), new Object[] {
     		"X X",
@@ -35,7 +36,7 @@ public class ModRecipes {
     		"X X",
     		'X', Blocks.ladder
     		
-    	} /* close array */);
+    	});
     	
     	GameRegistry.addRecipe(new ItemStack(ModBlocks.basicWindmill), new Object[] {
     		" X ",
@@ -43,8 +44,8 @@ public class ModRecipes {
     		" Z ",
     		'X', ModItems.blades, 'Y', ModItems.pump, 'Z', ModItems.tower
     		
-    	} /* close array */);
+    	});
 		
-	} // close addRecipes
+	}
 
-} // close class
+}

@@ -19,20 +19,29 @@ public class TileEntityWindmill extends TileEntity implements IInventory {
 	public int pumpSpeed = 200; // matches furnace smelting time
 	private String windmillInventoryName;
 		
+	/** Sets the custom name for the GUI
+	 * 
+	 * @param name
+	 */
 	public void setGuiDisplayName(String name) {
 		this.windmillInventoryName = name;
-	} // close windmillName
+	}
 	
+	/** Returns the number of slots in the inventory. */
 	@Override
 	public int getSizeInventory() {		
 		return this.windmillInventory.length;		
-	} // close getSizeInventory
+	}
 
+	/** Returns the stack in slot i */
 	@Override
 	public ItemStack getStackInSlot(int slot) {		
 		return this.windmillInventory[slot];		
-	} // close getStackInSlot
+	}
 
+	/** Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
+     * new stack.
+	 */
 	@Override
 	public ItemStack decrStackSize(int slot, int numOfItems) {		
 		if (this.windmillInventory[slot] != null) {
@@ -45,15 +54,18 @@ public class TileEntityWindmill extends TileEntity implements IInventory {
 				fromSlot = this.windmillInventory[slot].splitStack(numOfItems);
 				if (this.windmillInventory[slot].stackSize == 0) {
 					this.windmillInventory[slot] = null;
-				} // close if
+				}
 				return fromSlot;
-			} // close else
+			}
 		} else {
 			return null;
-		} // close else
+		}
 		
-	} // close decrStackSize
+	}
 
+	/** When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
+     * like when you close a workbench GUI.
+	 */
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot) {		
 		if (this.windmillInventory[slot] != null) {
@@ -62,57 +74,67 @@ public class TileEntityWindmill extends TileEntity implements IInventory {
 			return dropStack;
 		} else {
 			return null;
-		} // close else
+		}
 		
-	} // close getStackInSlotOnClosing
+	}
 
+	/** Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections). */
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack inputStack) {		
 		this.windmillInventory[slot] = inputStack;
 		if (inputStack != null && inputStack.stackSize > this.getInventoryStackLimit()) {
 			inputStack.stackSize = this.getInventoryStackLimit();
-		} // end if		
-	} // close setInventorySlotContents
+		}	
+	}
 
+	/** Returns the name of the inventory */
 	@Override
 	public String getInventoryName() {
 		return this.hasCustomInventoryName() ? this.windmillInventoryName : "container.basicWindmill";
-	} // close getInventoryName
+	}
 
+	/** Returns if the inventory is named */
 	@Override
 	public boolean hasCustomInventoryName() {
 		return this.windmillInventoryName != null && this.windmillInventoryName.length() > 0;		
-	} // close hasCustomInventoryName
+	}
 
+	/** Returns the maximum stack size for a inventory slot. */
 	@Override
 	public int getInventoryStackLimit() {	
 		return 64;	
-	} // close getInventoryStackLimit
+	}
 
 	@Override
 	public void openInventory() {
 		
-	} // close openInventory
+	}
 
 	@Override
 	public void closeInventory() {
 		
-	} // close closeInventory
+	}
 
-	// Only allows empty buckets in slot 0 (not items inserted in slot 1)
+	/** Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot. */
 	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack inputStack) {		
+	public boolean isItemValidForSlot(int slot, ItemStack inputStack) {
+		// Only allows empty buckets in slot 0 (not items inserted in slot 1)
 		 return slot == 1 ? false : (slot == 0 ? (isEmptyBucket(inputStack)) : false);
-	} // close isItemValidForSlot
+	}
 	
-	// tests to see if empty bucket is inserted in slot 0
+	/** tests to see if empty bucket is inserted in slot 0
+	 * 
+	 * @param inputStack
+	 * @return
+	 */
 	private boolean isEmptyBucket(ItemStack inputStack) {		
 		ItemStack bucket = new ItemStack(Items.bucket);
 		return inputStack.equals(bucket) ? true : false;		
-	} // close isEmptyBucket
+	}
 	
-	// restore items in slots from previous game
+	/** Reads the entity from NBT (calls an abstract helper method to read specialized data) */
 	public void readFromNBT(NBTTagCompound tagCompound) {
+		// restore items in slots from previous game
 		super.readFromNBT(tagCompound);
 		NBTTagList tagList = tagCompound.getTagList("Items", 10);
 		this.windmillInventory = new ItemStack[this.getSizeInventory()];
@@ -124,17 +146,18 @@ public class TileEntityWindmill extends TileEntity implements IInventory {
 			if (byte0 >= 0 && byte0 < this.windmillInventory.length) {
 				this.windmillInventory[byte0] = ItemStack.loadItemStackFromNBT(tabCompound1);
 				
-			} // close if
-		} // close for
+			}
+		}
 		
 		this.pumpTime = tagCompound.getShort("PumpTime");		
 		if (tagCompound.hasKey("WindmillTag", 8)) {
 			this.windmillInventoryName = tagCompound.getString("WindmillTag");
-		} // end if
-	} // close readFromNBT
+		}
+	}
 	
-	// save items in slots when game is closed
+	/** Save the entity to NBT (calls an abstract helper method to write extra data) */
 	public void writeToNBT(NBTTagCompound tagCompound) {
+		// save items in slots when game is closed
 		super.writeToNBT(tagCompound);
 		tagCompound.setShort("PumpTime", (short)this.pumpTime);
 		NBTTagList tagList = new NBTTagList();
@@ -145,35 +168,48 @@ public class TileEntityWindmill extends TileEntity implements IInventory {
 				tagCompound1.setByte("Slot", (byte)i);
 				this.windmillInventory[i].writeToNBT(tagCompound1);
 				tagList.appendTag(tagCompound1);
-			} // close if
-		} // close for
+			}
+		}
 		
 		tagCompound.setTag("Items", tagList);
 		
 		if (this.hasCustomInventoryName()) {
 			tagCompound.setString("WindmillTag", this.windmillInventoryName);
-		} // close hasCustomInventoryName
-	} // close writeToNBT
+		}
+	}
 	
-	// Returns an int between 0 and scaleValue representing how close the bucket is to full
+	/** Returns an int between 0 and scaleValue representing how close the bucket is to full
+	 * 
+	 * @param scaleValue
+	 * @return
+	 */
 	@SideOnly(Side.CLIENT)
 	public int getPumpProgressScaled(int scaleValue) {
 		return this.pumpTime * scaleValue / this.pumpSpeed;
-	} // close getPumpProgressScaled
+	}
 		
+	/** Returns whether water is currently being pumped
+	 * 
+	 * @return
+	 */
 	public boolean isPumping() {
 		return (this.pumpTime > 0);
-	} // close isPumping
+	}
 	
+	/** Checks whether input produces a crafting result
+	 * 
+	 * @return
+	 */
 	private boolean canPump() {
 		ItemStack itemstack = ModSmeltingRecipes.smelting().getSmeltingResult(this.windmillInventory[0]);
 		if ((this.windmillInventory[0] == null) || (this.windmillInventory[1] != null) || (itemstack == null)) {
 			return false;
 		} else {
 			return true;			
-		} // close else
-	} // close canPump
+		}
+	}
 	
+	/** Checks if item has been pumped and updates the entity */
 	public void updateEntity() {
 		boolean flag = false;  // true when inventory changed
 		if (canPump()) {
@@ -183,13 +219,14 @@ public class TileEntityWindmill extends TileEntity implements IInventory {
 				this.smeltItem();
 				flag = true;
 			}
-		} // close if
+		}
 		
 		if (flag) {
 			this.markDirty();
-		} // close if
-	} // close updateEntity
+		}
+	}
 
+	/** Places crafting result in the output slot and removes an input item */
 	private void smeltItem() {
 		if(this.canPump()) {
 			ItemStack result = ModSmeltingRecipes.smelting().getSmeltingResult(this.windmillInventory[0]);
@@ -197,12 +234,13 @@ public class TileEntityWindmill extends TileEntity implements IInventory {
 			this.windmillInventory[0].stackSize--;
 			if(this.windmillInventory[0].stackSize <= 0) {
 				this.windmillInventory[0] = null;
-			} // close if
-		} // close if
-	} // close smeltItem
+			}
+		}
+	}
 	
+	/** Do not make give this method the name canInteractWith because it clashes with Container */
 	public boolean isUseableByPlayer (EntityPlayer player) {
 		return true; // simple for now, may change later
-	} // close isUseableByPlayer
+	}
 
-} // close class
+}

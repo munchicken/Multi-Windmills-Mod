@@ -14,6 +14,6 @@ public abstract class ItemWindmill extends Item {
 		setTextureName(Reference.MODID + ":" + getUnlocalizedName().substring(5).toLowerCase());
 		setCreativeTab(ModCreativeTabs.tabWindmill);
 		
-	} // close constructor
+	}
 
-} // close class
+}

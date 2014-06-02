@@ -11,12 +11,13 @@ public class CommonProxy {
 		
 		// Nothing here as the server doesn't render graphics or entities!
 		
-	} // close registerRenderers
+	}
 	
+	/** Registers the tile entity with the game registry */
 	public void registerTileEntities() {
 		
 		GameRegistry.registerTileEntity(TileEntityWindmill.class, Reference.MODID + "_" + "TileEntity");
 		
-	} // close registerTileEntities
+	}
 
-} // close class
+}

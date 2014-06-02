@@ -15,7 +15,7 @@ public class ItemWindmillRenderer implements IItemRenderer {
 	public ItemWindmillRenderer(TileEntitySpecialRenderer renderer, TileEntity entity) {
 		this.entity = entity;
 		this.renderer = renderer;
-	} // close constructor
+	}
 	
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -36,4 +36,4 @@ public class ItemWindmillRenderer implements IItemRenderer {
 		this.renderer.renderTileEntityAt(this.entity, 0.00, 0.00, 0.00, 0.00F);
 	}
 
-} // close class
+}

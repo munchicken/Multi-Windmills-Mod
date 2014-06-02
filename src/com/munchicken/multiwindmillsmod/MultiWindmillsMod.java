@@ -31,6 +31,6 @@ public class MultiWindmillsMod {
     	ModRecipes.addRecipes();
     	myProxy.registerRenderers();
     	
-    } // close preinit
+    }
     
-} // close class
+}

@@ -10,28 +10,31 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RegisterHelper {
 	
+	/** Registers blocks for mod
+	 * 
+	 * @param block
+	 */
 	public static void registerBlock(Block block) {
 		
 		GameRegistry.registerBlock(block, Reference.MODID + "_" + block.getUnlocalizedName().substring(5));
 		
-	} // close registerBlock
+	}
 	
+	/** Registers items for mod
+	 * 
+	 * @param item
+	 */
 	public static void registerItem(Item item) {
 		
 		GameRegistry.registerItem(item, Reference.MODID + "_" + item.getUnlocalizedName().substring(5));
 		
-	} // close registerItem
+	}
 	
+	/** Registers GUIs for mod */
 	public static void registerGui() {
 		
 		NetworkRegistry.INSTANCE.registerGuiHandler(MultiWindmillsMod.instance, new WindmillGuiHandler());
 		
-	} // close registerGui
-	
-	/*public static void registerChannel() {
-		
-		EnumMap<Side, FMLEmbeddedChannel> channels = NetworkRegistry.INSTANCE.newChannel("channel", new ChannelHandler());
-		
-	} // close registerChannel */
+	}
 
-} // close class
+}
