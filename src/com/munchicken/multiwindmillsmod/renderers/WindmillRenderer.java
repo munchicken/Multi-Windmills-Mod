@@ -41,4 +41,30 @@ public class WindmillRenderer extends TileEntitySpecialRenderer {
 		
 	}
 	
+	/**
+	 * A copy of renderTileEntityAt that doesn't include animation information (setHeadRotation & setWheelRotation) to avoid a crash
+	 * 
+	 * @param var1
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param var8
+	 */
+	public void renderTileEntityInHandAt(TileEntity var1, double x, double y, double z, float var8) {
+		// Copy of entity renderer without animation for rending item-in-hand
+		GL11.glPushMatrix();
+		//GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+		/* Scaled model in half from 2x6x2 (which represented a common 20' windmill) to fit 1x1
+		due to clipping and right-click problems with a model larger than 1x1
+		with glTranslatef & glScalef */
+		GL11.glTranslatef((float) x + 0.26F, (float) y + 0.75F, (float) z + 0.25F);
+		GL11.glRotatef(180F, 0F, 0F, 1F);
+		this.bindTexture(texture);
+		GL11.glScalef(0.5F, 0.5F, 0.5F);
+		GL11.glPushMatrix();
+		windmill.renderModel(0.0625F);
+		GL11.glPopMatrix();
+		GL11.glPopMatrix();
+		
+	}
 }
