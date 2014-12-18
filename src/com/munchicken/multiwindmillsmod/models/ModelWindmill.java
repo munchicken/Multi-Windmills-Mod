@@ -645,7 +645,7 @@ public class ModelWindmill extends ModelBase
     
   }
   /** Animates the "head" portion of the windmill by moving to 1 of 8 directions.
-   *  There's a 1 in 100,000 chance the wind will change to a random direction every tick.
+   *  There's a 1 in 50,000 chance the wind will change to a random direction every tick.
    *  
    * @param tick
    */
@@ -661,7 +661,7 @@ public class ModelWindmill extends ModelBase
 	  double southWest = 5 * Math.PI /4;
 	  double west = 3 * Math.PI / 2;
 	  double northWest = 7 * Math.PI / 4;
-	  double windChangeChance = random.nextInt(100000) + 1;
+	  double windChangeChance = random.nextInt(50000) + 1;
 	  
 	  if(windChangeChance == 5) {
 	  

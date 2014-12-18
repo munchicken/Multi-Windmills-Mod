@@ -16,7 +16,7 @@ public class TileEntityWindmill extends TileEntity implements IInventory {
 
 	private ItemStack[] windmillInventory = new ItemStack[2]; // 2 Inventory slots in windmill
 	public int pumpTime;  // time to pump bucket of water
-	public int pumpSpeed = 200; // matches furnace smelting time
+	public int pumpSpeed = 400; // double furnace smelting time (increased from 200 based on feedback from tester)
 	private String windmillInventoryName;
 		
 	/** Sets the custom name for the GUI
